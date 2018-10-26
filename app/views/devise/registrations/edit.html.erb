@@ -13,6 +13,26 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :date_of_birth %><br />
+    <%= f.date_field :date_of_birth %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.select :gender, options_for_select(['Male', 'Female']) %>
+  </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
