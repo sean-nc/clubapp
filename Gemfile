@@ -67,3 +67,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # User sign in and registation
 gem 'devise'
+
+# User authorization
+gem 'pundit'
+
+# User roles
+gem 'rolify'
