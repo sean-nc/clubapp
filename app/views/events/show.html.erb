@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_venue_event_path(@venue, @event) %> |
+<% if current_user || policy(@event).update? %>
+  <%= link_to 'Edit', edit_venue_event_path(@venue, @event) %> |
+<% end %>
 <%= link_to 'Back', venue_events_path(@venue) %>

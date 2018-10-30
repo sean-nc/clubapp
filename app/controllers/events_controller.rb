@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_venue
+  before_action :event_auth, only: [:edit, :create, :update, :destroy]
+  skip_before_action :user_authorized?, only: [:index, :show]
 
 
   def index
@@ -12,6 +14,7 @@ class EventsController < ApplicationController
 
   def new
     @event = @venue.events.build
+    authorize @event
   end
 
   def edit
@@ -49,6 +52,10 @@ class EventsController < ApplicationController
 
     def set_venue
       @venue = Venue.find(params[:venue_id])
+    end
+
+    def event_auth
+      authorize @event
     end
 
     def event_params
