@@ -1,7 +1,8 @@
 class Event < ApplicationRecord
   belongs_to :venue
-  validates :venue_id, precense: true
-  validates :start_time, precense: true
-  validates :end_time, precense: true
-  validates :name, precense: true
+
+  validates :venue_id, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
+  validates :name, presence: true
 end

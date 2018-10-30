@@ -1,25 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Events</h1>
+<% @events.each do |event| %>
+  <ul>
+    <h4><%= event.name %></h4>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <%= link_to 'Show', venue_event_path(@venue, event) %>
+    <%= link_to 'Edit', edit_venue_event_path(@venue, event) %>
+    <%= link_to 'Destroy', venue_event_path(@venue, event), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </ul>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <br>
+  <br>
+
+<% end %>
 
 <br>
+<br>
 
-<%= link_to 'New Event', new_event_path %>
+<%= link_to 'New Event', new_venue_event_path(@venue) %>

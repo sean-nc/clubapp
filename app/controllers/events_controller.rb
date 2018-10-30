@@ -1,25 +1,27 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_venue
+
 
   def index
-    @events = Event.all
+    @events = @venue.events
   end
 
   def show
   end
 
   def new
-    @event = Event.new
+    @event = @venue.events.build
   end
 
   def edit
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = @venue.events.build(event_params)
     if @event.save
-      redirect_to @event
-      flast[:notice] = 'Event was successfully created.'
+      redirect_to venue_event_path(@venue, @event)
+      flash[:notice] = 'Event was successfully created.'
     else
       render :new
     end
@@ -27,8 +29,8 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      redirect_to @event
-      flast[:notice] = 'Event was successfully updated.'
+      redirect_to venue_event_path(@venue, @event)
+      flash[:notice] = 'Event was successfully updated.'
     else
       render :edit
     end
@@ -36,13 +38,17 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_url
-    flast[:notice] = 'Event was successfully destroyed.'
+    redirect_to venue_events_path(@venue)
+    flash[:notice] = 'Event was successfully destroyed.'
   end
 
   private
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    def set_venue
+      @venue = Venue.find(params[:venue_id])
     end
 
     def event_params

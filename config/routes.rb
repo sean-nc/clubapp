@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
-  root 'static_pages#home'
+  root                'static_pages#home'
+  devise_for          :users
+
+  resources           :venues do
+    resources       :events
+  end
 end

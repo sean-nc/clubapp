@@ -73,3 +73,6 @@ gem 'pundit'
 
 # User roles
 gem 'rolify'
+
+# Fake data
+gem 'faker'
