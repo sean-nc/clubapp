@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_venue_path(@venue) %> |
+<% if current_user && policy(@venue).update? %>
+  <%= link_to 'Edit', edit_venue_path(@venue) %> |
+<% end %>
 <%= link_to 'Back', venues_path %>

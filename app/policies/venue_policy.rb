@@ -1,10 +1,10 @@
 class VenuePolicy < ApplicationPolicy
   def index?
-    user
+    true
   end
 
   def show?
-    user
+    true
   end
 
   def create?
@@ -24,6 +24,6 @@ class VenuePolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.has_roles?(:admin)
+    user.has_role?(:admin)
   end
 end
