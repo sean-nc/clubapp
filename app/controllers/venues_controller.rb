@@ -1,5 +1,6 @@
 class VenuesController < ApplicationController
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
+  before_action :venue_auth, only: [:edit, :create, :update, :destroy]
 
   def index
     @venues = Venue.all
@@ -10,6 +11,7 @@ class VenuesController < ApplicationController
 
   def new
     @venue = Venue.new
+    authorize @venue
   end
 
   def edit
@@ -48,5 +50,9 @@ class VenuesController < ApplicationController
     def venue_params
       params.require(:venue).permit(:name, :location, :age, :email, :phone, :capacity,
                                     :music, :dress_code, :website, :category)
+    end
+
+    def venue_auth
+      authorize @venue
     end
 end

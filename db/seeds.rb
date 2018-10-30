@@ -1,6 +1,8 @@
-User.create(email: "email@email.com", password: "password",
-            password_confirmation: "password", username: "sean",
-            first_name: "Sean", last_name: "Cordes", gender: "Male", date_of_birth: Date.new(1990, 2, 11))
+u = User.create(email: "email@email.com", password: "password",
+                password_confirmation: "password", username: "sean",
+                first_name: "Sean", last_name: "Cordes", gender: "Male", date_of_birth: Date.new(1990, 2, 11))
+
+u.add_role(:admin)
 
 10.times do |n|
   if n.even?
@@ -23,6 +25,8 @@ User.create(email: "email@email.com", password: "password",
               date_of_birth: birth_date)
 end
 
+u = User.find(2)
+
 10.times do |n|
   name = Faker::Company.name
   phone = Faker::PhoneNumber.cell_phone
@@ -41,6 +45,8 @@ end
                        dress_code: dress_code,
                        website: "https://biz#{n}.com",
                        category: category)
+
+  u.add_role(:admin, venue)
 
   5.times do |num|
     name = "#{venue.name} - Event #{num}"

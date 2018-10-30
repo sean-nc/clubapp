@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   attr_writer :login
 
   devise :database_authenticatable, :registerable,
