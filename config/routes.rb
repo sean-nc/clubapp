@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for          :users
 
   resources           :venues do
-    resources       :events
+    resources           :events do
+      resources           :ticket_options, except: :show
+    end
   end
 end
