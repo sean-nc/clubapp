@@ -37,11 +37,14 @@ ActiveRecord::Schema.define(version: 2018_11_02_040154) do
   end
 
   create_table "ticket_options", force: :cascade do |t|
+    t.string "name"
     t.integer "price"
     t.datetime "expiration"
     t.integer "limit"
+    t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_ticket_options_on_event_id"
   end
 
   create_table "users", force: :cascade do |t|

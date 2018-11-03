@@ -1,10 +1,10 @@
 class TicketOptionsPolicy < ApplicationPolicy
   def index?
-    user.has_role?(:admin) || user.has_role?(:admin, record.venue)
+    current_user
   end
 
   def create?
-    user.has_role?(:admin) || user.has_role?(:admin, record.venue)
+    user.has_role?(:admin) || user.has_role?(:admin, record.event.venue)
   end
 
   def new?
@@ -12,7 +12,7 @@ class TicketOptionsPolicy < ApplicationPolicy
   end
 
   def update?
-    user.has_role?(:admin) || user.has_role?(:admin, record.venue)
+    user.has_role?(:admin) || user.has_role?(:admin, record.event.venue)
   end
 
   def edit?
@@ -20,6 +20,6 @@ class TicketOptionsPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.has_role?(:admin) || user.has_role?(:admin, record.venue)
+    user.has_role?(:admin) || user.has_role?(:admin, record.event.venue)
   end
 end
