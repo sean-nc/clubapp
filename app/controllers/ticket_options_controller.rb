@@ -1,20 +1,23 @@
 class TicketOptionsController < ApplicationController
-  before_action :set_ticket_option, only: [:edit, :update, :destroy]
-  before_action :set_event, only: []
+  before_action :set_event, only: [:index, :new, :create]
+  before_action :set_ticket_option, only: [:show, :edit, :update, :destroy]
 
   def index
-    @ticket_options = TicketOption.all
+    @ticket_options = @event.ticket_optioins
+  end
+
+  def show
   end
 
   def new
-    @ticket_option = TicketOption.new
+    @ticket_option = @event.ticket_options.build
   end
 
   def edit
   end
 
   def create
-    @ticket_option = TicketOption.new(ticket_option_params)
+    @ticket_option = @event.ticket_options.build(ticket_option_params)
     if @ticket_option.save
       redirect_to @ticket_option, notice: 'Ticket option was successfully created.'
     else

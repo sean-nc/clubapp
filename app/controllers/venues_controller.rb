@@ -21,8 +21,7 @@ class VenuesController < ApplicationController
   def create
     @venue = Venue.new(venue_params)
     if @venue.save
-      redirect_to @venue
-      flash[:notice] = 'Venue was successfully created.'
+      redirect_to @venue, notice: 'Venue was successfully created.'
     else
       render :new
     end
@@ -30,8 +29,7 @@ class VenuesController < ApplicationController
 
   def update
     if @venue.update(venue_params)
-      redirect_to @venue
-      flash[:notice] = 'Venue was successfully updated.'
+      redirect_to @venue, notice: 'Venue was successfully updated.'
     else
       render :edit
     end
@@ -39,8 +37,7 @@ class VenuesController < ApplicationController
 
   def destroy
     @venue.destroy
-    redirect_to venues_url,
-    flash[:notice] = 'Venue was successfully destroyed.'
+    redirect_to venues_url, notice: 'Venue was successfully destroyed.'
   end
 
   private

@@ -23,8 +23,7 @@ class EventsController < ApplicationController
   def create
     @event = @venue.events.build(event_params)
     if @event.save
-      redirect_to venue_event_path(@venue, @event)
-      flash[:notice] = 'Event was successfully created.'
+      redirect_to venue_event_path(@venue, @event), notice: 'Event was successfully created.'
     else
       render :new
     end
@@ -32,8 +31,7 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      redirect_to venue_event_path(@venue, @event)
-      flash[:notice] = 'Event was successfully updated.'
+      redirect_to venue_event_path(@venue, @event), notice: 'Event was successfully updated.'
     else
       render :edit
     end
@@ -41,8 +39,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to venue_events_path(@venue)
-    flash[:notice] = 'Event was successfully destroyed.'
+    redirect_to venue_events_path(@venue), notice: 'Event was successfully destroyed.'
   end
 
   private

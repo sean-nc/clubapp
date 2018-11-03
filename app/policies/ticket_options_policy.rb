@@ -3,6 +3,10 @@ class TicketOptionsPolicy < ApplicationPolicy
     current_user
   end
 
+  def show?
+    user.has_role?(:admin) || user.has_role?(:admin, record.event.venue)
+  end
+
   def create?
     user.has_role?(:admin) || user.has_role?(:admin, record.event.venue)
   end
