@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2018_11_02_040154) do
     t.integer "price"
     t.datetime "expiration"
     t.integer "limit"
+    t.text "description"
     t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

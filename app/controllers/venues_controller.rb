@@ -45,12 +45,12 @@ class VenuesController < ApplicationController
       @venue = Venue.find(params[:id])
     end
 
+    def venue_auth
+      authorize @venue
+    end
+
     def venue_params
       params.require(:venue).permit(:name, :location, :age, :email, :phone, :capacity,
                                     :music, :dress_code, :website, :category)
-    end
-
-    def venue_auth
-      authorize @venue
     end
 end
