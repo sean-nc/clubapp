@@ -26,6 +26,7 @@ u.add_role(:admin)
 end
 
 u = User.find(2)
+u2 = User.find(3)
 
 10.times do |n|
   name = Faker::Company.name
@@ -47,6 +48,7 @@ u = User.find(2)
                        category: category)
 
   u.add_role(:admin, venue)
+  u.add_role(:employee, venue)
 
   5.times do |num|
     name = "#{venue.name} - Event #{num}"

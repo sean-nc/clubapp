@@ -1,14 +1,6 @@
 class EventPolicy < ApplicationPolicy
-  def index?
-    true
-  end
-
-  def show?
-    true
-  end
-
   def create?
-    user.has_role?(:admin) || user.has_role?(:admin, record.venue)
+    user.has_role?(:admin) || user.has_role?(:admin, record)
   end
 
   def new?
@@ -16,7 +8,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def update?
-    user.has_role?(:admin) || user.has_role?(:admin, record.venue)
+    user.has_role?(:admin) || user.has_role?(:admin, record)
   end
 
   def edit?
@@ -24,6 +16,6 @@ class EventPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.has_role?(:admin) || user.has_role?(:admin, record.venue)
+    user.has_role?(:admin) || user.has_role?(:admin, record)
   end
 end

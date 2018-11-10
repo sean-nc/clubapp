@@ -1,7 +1,8 @@
 class TicketOptionsController < ApplicationController
   before_action :set_event, only: [:index, :new, :create]
   before_action :set_ticket_option, only: [:show, :edit, :update, :destroy]
-  before_action :ticket_auth, except: :index
+  before_action :set_venue, except: :index
+  before_action :venue_authorization, except: :index
 
   def index
     @ticket_options = @event.ticket_optioins
@@ -49,8 +50,8 @@ class TicketOptionsController < ApplicationController
       @event = Event.find(params[:event_id])
     end
 
-    def ticket_auth
-      authorize @ticket
+    def set_venue
+      @venue = Venue.find(params[:venue_id])
     end
 
     def ticket_option_params

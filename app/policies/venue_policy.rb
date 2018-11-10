@@ -1,12 +1,4 @@
 class VenuePolicy < ApplicationPolicy
-  def index?
-    true
-  end
-
-  def show?
-    true
-  end
-
   def create?
     user.has_role?(:admin)
   end

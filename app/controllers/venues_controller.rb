@@ -1,6 +1,6 @@
 class VenuesController < ApplicationController
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
-  before_action :venue_auth, only: [:edit, :create, :update, :destroy]
+  before_action :venue_authorization, only: [:new, :edit, :create, :update, :destroy]
   skip_before_action :user_authorized?, only: [:index, :show]
 
   def index
@@ -43,10 +43,6 @@ class VenuesController < ApplicationController
   private
     def set_venue
       @venue = Venue.find(params[:id])
-    end
-
-    def venue_auth
-      authorize @venue
     end
 
     def venue_params
