@@ -1,4 +1,18 @@
-<% if current_user || policy(@event).update? %>
+<% @ticket_options.each do |option| %>
+  <ul>
+    <li><%= option.name %></li>
+    <li><%= option.description %></li>
+    <li><%= number_to_currency(option.price/100) %></li>
+    <li><%= option.limit %></li>
+    <li><%= option.expiration %></li>
+  </ul>
+<% end %>
+
+<% if current_user && policy(@event).update? %>
   <%= link_to 'Edit', edit_venue_event_path(@venue, @event) %> |
 <% end %>
 <%= link_to 'Back', venue_events_path(@venue) %>
+
+<div>
+  <%= link_to "Tickets", venue_event_ticket_options_path(@event.venue, @event) %>
+</div>

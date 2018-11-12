@@ -2,6 +2,17 @@
 <% @venues.each do |venue| %>
   <ul>
     <h4><%= venue.name %></h4>
+    <ul>
+      <li><%= venue.location %></li>
+      <li><%= venue.age %></li>
+      <li><%= venue.email %></li>
+      <li><%= venue.phone %></li>
+      <li><%= venue.capacity %></li>
+      <li><%= venue.music %></li>
+      <li><%= venue.dress_code %></li>
+      <li><%= venue.category %></li>
+      <li><%= venue.website %></li>
+    </ul>
 
     <%= link_to 'Show', venue %>
     <% if current_user %>

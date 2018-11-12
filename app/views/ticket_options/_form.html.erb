@@ -1,4 +1,4 @@
-<%= form_with(model: ticket_option, local: true) do |form| %>
+<%= form_with(model: [@venue, @event, ticket_option], local: true) do |form| %>
   <% if ticket_option.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(ticket_option.errors.count, "error") %> prohibited this ticket_option from being saved:</h2>
@@ -10,6 +10,31 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price, step: 1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :limit %>
+    <%= form.number_field :limit, step: 1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :expiration %>
+    <%= form.datetime_field :expiration %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

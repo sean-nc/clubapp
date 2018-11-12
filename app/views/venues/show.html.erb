@@ -1,4 +1,33 @@
-<% if current_user && policy(@venue).update? %>
-  <%= link_to 'Edit', edit_venue_path(@venue) %> |
+<h4><%= @venue.name %></h4>
+<ul>
+  <li><%= @venue.location %></li>
+  <li><%= @venue.age %></li>
+  <li><%= @venue.email %></li>
+  <li><%= @venue.phone %></li>
+  <li><%= @venue.capacity %></li>
+  <li><%= @venue.music %></li>
+  <li><%= @venue.dress_code %></li>
+  <li><%= @venue.category %></li>
+  <li><%= @venue.website %></li>
+</ul>
+
+
+<% @events.each do |event| %>
+  <%= link_to venue_event_path(@venue, event) do %>
+    <h4><%= event.name %></h4>
+  <% end %>
+  <ul>
+    <li><%= event.name %></li>
+    <li><%= event.description %></li>
+    <li><%= event.start_time %></li>
+    <li><%= event.end_time %></li>
+  </ul>
 <% end %>
-<%= link_to 'Back', venues_path %>
+
+<div>
+  <%= link_to "Events", venue_events_path(@venue) %>
+  <% if current_user && policy(@venue).update? %>
+    <%= link_to 'Edit', edit_venue_path(@venue) %> |
+  <% end %>
+  <%= link_to 'Back', venues_path %>
+</div>

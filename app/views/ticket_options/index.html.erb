@@ -1,25 +1,11 @@
-<p id="notice"><%= notice %></p>
+<% @ticket_options.each do |option| %>
+  <ul>
+    <li><%= option.name %></li>
+    <li><%= option.description %></li>
+    <li><%= number_to_currency(option.price/100) %></li>
+    <li><%= option.limit %></li>
+    <li><%= option.expiration %></li>
+  </ul>
+<% end %>
 
-<h1>Ticket Options</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @ticket_options.each do |ticket_option| %>
-      <tr>
-        <td><%= link_to 'Show', ticket_option %></td>
-        <td><%= link_to 'Edit', edit_ticket_option_path(ticket_option) %></td>
-        <td><%= link_to 'Destroy', ticket_option, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Ticket Option', new_ticket_option_path %>
+<%= link_to "New Tickets", new_venue_event_ticket_option_path(@event.venue, @event) %>

@@ -2,10 +2,10 @@ class TicketOptionsController < ApplicationController
   before_action :set_event, only: [:index, :new, :create]
   before_action :set_ticket_option, only: [:show, :edit, :update, :destroy]
   before_action :set_venue, except: :index
-  before_action :venue_authorization, except: :index
+  after_action :venue_authorization, except: :index
 
   def index
-    @ticket_options = @event.ticket_optioins
+    @ticket_options = @event.ticket_options
   end
 
   def show
@@ -38,7 +38,6 @@ class TicketOptionsController < ApplicationController
   def destroy
     @ticket_option.destroy
     redirect_to ticket_options_url, notice: 'Ticket option was successfully destroyed.'
-    end
   end
 
   private
@@ -55,6 +54,6 @@ class TicketOptionsController < ApplicationController
     end
 
     def ticket_option_params
-      params.require(:ticket_option).permit(:price, :expiration, :limit)
+      params.require(:ticket_option).permit(:name, :description, :price, :expiration, :limit)
     end
 end

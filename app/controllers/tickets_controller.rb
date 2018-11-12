@@ -2,7 +2,7 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only: :show
   before_action :set_event, only: :index
   before_action :set_venue
-  before_action :venue_authorization
+  after_action :venue_authorization
 
   def index
     @tickets = @event.tickets.all

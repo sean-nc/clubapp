@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_venue, exclude: :show
-  before_action :venue_authorization, exclude: [:index, :show]
+  after_action :venue_authorization, except: [:index, :show]
   skip_before_action :user_authorized?, only: [:index, :show]
 
 
@@ -10,6 +10,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @ticket_options = @event.ticket_options.all
   end
 
   def new

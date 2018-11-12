@@ -1,48 +1,54 @@
-require 'test_helper'
+# require 'test_helper'
 
-class TicketOptionsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @ticket_option = ticket_options(:one)
-  end
+# class TicketOptionsControllerTest < ActionDispatch::IntegrationTest
+#   include Devise::Test::IntegrationHelpers
 
-  test "should get index" do
-    get ticket_options_url
-    assert_response :success
-  end
+#   setup do
+#     @venue = venues(:one)
 
-  test "should get new" do
-    get new_ticket_option_url
-    assert_response :success
-  end
+#     @event = Event.create(name: "event1", description: "description",
+#                           start_time: DateTime.now + 24.hours,
+#                           end_time: DateTime.now + 30.hours,
+#                           venue_id: @venue.id)
 
-  test "should create ticket_option" do
-    assert_difference('TicketOption.count') do
-      post ticket_options_url, params: { ticket_option: {  } }
-    end
+#     @user = User.create(email: "new_email@email.com", password: "password",
+#                         password_confirmation: "password", username: "sean12",
+#                         first_name: "Sean", last_name: "Cordes", gender: "Male",
+#                         date_of_birth: Date.new(1990, 2, 11))
 
-    assert_redirected_to ticket_option_url(TicketOption.last)
-  end
+#     @ticket_option = TicketOption.create(name: "Cover", price: 1000, expiration: @event.end_time,
+#                                          limit: 20, description: "description.", event_id: @event.id)
+#   end
 
-  test "should show ticket_option" do
-    get ticket_option_url(@ticket_option)
-    assert_response :success
-  end
 
-  test "should get edit" do
-    get edit_ticket_option_url(@ticket_option)
-    assert_response :success
-  end
+#   # Any user can access
+#   ###############################
+#   test "should get index" do
+#     get venue_event_ticket_options_url(@venue, @event)
+#     assert_response :redirect
 
-  test "should update ticket_option" do
-    patch ticket_option_url(@ticket_option), params: { ticket_option: {  } }
-    assert_redirected_to ticket_option_url(@ticket_option)
-  end
+#     sign_in @user
+#     get venue_event_ticket_options_url(@venue, @event)
+#     assert_response :success
+#   end
 
-  test "should destroy ticket_option" do
-    assert_difference('TicketOption.count', -1) do
-      delete ticket_option_url(@ticket_option)
-    end
+#   test "should get show" do
+#     get venue_event_ticket_option_url(@venue, @event, @ticket_option)
+#     assert_response :redirect
 
-    assert_redirected_to ticket_options_url
-  end
-end
+#     sign_in @user
+#     @user.add_role(:admin, @venue)
+#     get venue_event_ticket_option_url(@venue, @event, @ticket_option)
+#     assert_response :success
+#   end
+
+#   test "should get new" do
+#     get new_venue_event_ticket_option_url(@venue, @event)
+#     assert_response :redirect
+
+#     sign_in @user
+#     @user.add_role(:admin, @venue)
+#     get new_venue_event_ticket_option_url(@venue, @event)
+#     assert_response :success
+#   end
+# end

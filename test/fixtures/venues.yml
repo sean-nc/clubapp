@@ -1,7 +1,19 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+<% name = Faker::Company.name %>
+<% phone = Faker::PhoneNumber.cell_phone %>
+<% capacity = rand(100..400) %>
+<% music = Faker::Music.genre %>
+<% dress_code = ["Casual", "Dress to Impress", "Formal", "Business Casual"].sample %>
+<% category = ["Bar", "Club", "Club/Bar"].sample %>
 
 one:
-  name: MyString
-
-two:
-  name: MyString
+  name: <%= name %>
+  location: Toronto
+  age: 19
+  email: business1@email.com %>
+  phone: <%= phone %>
+  capacity: <%= capacity %>
+  music: <%= music %>
+  dress_code: <%= dress_code %>
+  website: https://biz1.com
+  category: <%= category %>

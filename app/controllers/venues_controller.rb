@@ -1,6 +1,6 @@
 class VenuesController < ApplicationController
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
-  before_action :venue_authorization, only: [:new, :edit, :create, :update, :destroy]
+  after_action :venue_authorization, only: [:new, :edit, :create, :update, :destroy]
   skip_before_action :user_authorized?, only: [:index, :show]
 
   def index
@@ -8,11 +8,11 @@ class VenuesController < ApplicationController
   end
 
   def show
+    @events = @venue.events.last(3)
   end
 
   def new
     @venue = Venue.new
-    authorize @venue
   end
 
   def edit
