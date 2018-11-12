@@ -7,4 +7,11 @@ class Event < ApplicationRecord
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :name, presence: true
+  validate :valid_time
+
+  def valid_time
+    if end_time <= start_time || end_time <= Time.now
+      errors.add(:base, "The time for you event isn't valid.")
+    end
+  end
 end

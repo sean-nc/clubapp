@@ -1,3 +1,10 @@
+<ul>
+  <li><%= @event.name %></li>
+  <li><%= @event.description %></li>
+  <li><%= @event.start_time %></li>
+  <li><%= @event.end_time %></li>
+</ul>
+
 <% @ticket_options.each do |option| %>
   <ul>
     <li><%= option.name %></li>
@@ -14,5 +21,5 @@
 <%= link_to 'Back', venue_events_path(@venue) %>
 
 <div>
-  <%= link_to "Tickets", venue_event_ticket_options_path(@event.venue, @event) %>
+  <%= link_to "Ticket Options", venue_event_ticket_options_path(@event.venue, @event) %>
 </div>
