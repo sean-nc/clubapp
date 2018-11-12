@@ -76,3 +76,6 @@ gem 'rolify'
 
 # Fake data
 gem 'faker'
+
+# Payment Processing
+gem 'stripe'
